@@ -7,6 +7,11 @@
         {{ csrf_field() }}
 
         <div class="field">
+            <div id="file" class="dropzone"></div>
+        </div>
+        
+
+        <div class="field">
             <label for="title" class="label">Title</label>
             <p class="control">
                 <input type="text" name="title" id="title" class="input{{ $errors->has('title') ? ' is-danger' : '' }}">
@@ -53,4 +58,8 @@
             <p>We'll review your file before it goes live.</p>
         </div>
     </form>
+@endsection
+
+@section('scripts')
+    @include('files.partials._file_upload_js')
 @endsection
