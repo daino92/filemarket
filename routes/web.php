@@ -18,3 +18,4 @@ Route::group(['prefix' => '/account', 'middleware' => ['auth'], 'namespace' => '
 });
 
 Route::post('/{file}/upload', 'upload\UploadController@store')->name('upload.store');
+Route::delete('/{file}/upload/{upload}', 'upload\UploadController@destroy')->name('upload.destroy');

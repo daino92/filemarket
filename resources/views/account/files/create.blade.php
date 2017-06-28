@@ -9,7 +9,6 @@
         <div class="field">
             <div id="file" class="dropzone"></div>
         </div>
-        
 
         <div class="field">
             <label for="title" class="label">Title</label>
