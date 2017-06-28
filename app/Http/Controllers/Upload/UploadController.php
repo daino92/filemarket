@@ -37,9 +37,10 @@ class UploadController extends Controller
     public function destroy (File $file, Upload $upload) {
         $this->authorize('touch', $file);
         $this->authorize('touch', $upload);
-        //auth upload
-
-        //prevent all files from being removed when we're editing a file
+        
+        if ($file->uploads->count() === 1) {
+            return response()->json(null, 422);
+        }
 
         $upload->delete();
 

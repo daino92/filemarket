@@ -8,16 +8,17 @@
 				<strong>Title</strong>
 				<p>{{ $approval->title}}</p>
 			@endif
-
+		
 			@if($approval->overview_short !== $file->overview_short)
 				<strong>Short Overview</strong>
 				<p>{{ $approval->overview_short}}</p>
 			@endif
-
+		
 			@if($approval->overview !== $file->overview)
 				<strong>Overview</strong>
 				<p>{{ $approval->overview}}</p>
 			@endif
+		<!-- 34 video is missing here... -->
 		</div>
 	</div>
 </article>

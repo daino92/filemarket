@@ -15,21 +15,16 @@
         <div class="nav-right nav-menu">
             @if(auth()->check())
                 <a href="#" class="nav-item" onclick="event.preventDefault();
-                document.getElementById('logout').submit();">
-                Sign out
-                </a>
+                document.getElementById('logout').submit();">Sign out</a>
 
-                <a href="{{ route('account') }}" class="nav-item">
-                Your account
-                </a>
+                <a href="{{ route('account') }}" class="nav-item">Your account</a>
+                @role('admin')
+                    <a href="{{route('admin.index')}}" class="nav-item">Admin</a>
+                @endrole
             @else
-                <a href="{{ route('login') }}" class="nav-item">
-                Sign in
-                </a>
+                <a href="{{ route('login') }}" class="nav-item">Sign in</a>
                 <div class="nav-item">
-                    <a href="{{ route('register') }}" class="button">
-                    Start selling
-                    </a>
+                    <a href="{{ route('register') }}" class="button">Start selling</a>
                 </div>
             @endif
         </div>
