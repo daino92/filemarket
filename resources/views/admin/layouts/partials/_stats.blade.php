@@ -15,13 +15,13 @@
 			</div>
 			<div class="level-item has-text-centered">
 				<div>
-					<p class="heading">Comission this month</p>
+					<p class="heading">Commission this month</p>
 					<p class="title">£{{ 0 }}</p>
 				</div>
 			</div>
 			<div class="level-item has-text-centered">
 				<div>
-					<p class="heading">Lifetime comission</p>
+					<p class="heading">Lifetime commission</p>
 					<p class="title">£{{ 0 }}</p>
 				</div>
 			</div>

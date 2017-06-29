@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+	@include('account.layouts.partials._stats')
 	<section class="section">
-		@include('account.layouts.partials._stats')
 		<div class="container">
 			<div class="columns">
 				<div class="column is-one-quarter">

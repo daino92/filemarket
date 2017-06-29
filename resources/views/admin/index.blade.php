@@ -1,5 +1,5 @@
 @extends('admin.layouts.default')
 
-@section('account.content')
+@section('admin.content')
 	Admin home
 @endsection
