@@ -4,6 +4,7 @@
     <section class="hero is-medium is-info">
         <div class="hero-body">
             <div class="container">
+                @include('layouts.partials._flash')
                 <h3 class="subtitle is-spsced">
                     <strong>{{ $file->user->name }}</strong> is selling
                 </h3>
@@ -11,6 +12,10 @@
                 <h2 class="subtitle">
                     {{ $file->overview_short }}
                 </h2>
+
+                @if($file->isFree())
+                    @include('files.partials._checkout_form_free', compact('file'))
+                @endif
             </div>
         </div>
     </section>

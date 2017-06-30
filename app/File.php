@@ -126,6 +126,10 @@ class File extends Model
     	return $this->hasMany(Upload::class);
     }
 
+    public function Sales() {
+        return $this->hasMany(Sale::class);
+    }
+
 	public function user() {
 		return $this->belongsTo(User::class);
 	}
