@@ -39,6 +39,16 @@ class File extends Model
 		return 'identifier';
 	}
 
+	public function getUploadList()
+    {
+        return $this->uploads()->approved()->get()->pluck('path')->toArray();
+    }
+
+	public function matchesSale(Sale $sale)
+    {
+        return $this->sales->contains($sale);
+    }
+
 	public function visible()
     {
         if (auth()->user()->isAdmin()) {
@@ -120,6 +130,11 @@ class File extends Model
 
     protected function currentPropertiesDifferToGiven(array $properties) {
     	return array_only($this->toArray(), self::APPROVAL_PROPERTIES) != $properties;
+    }
+
+    public function calculateCommission() //important for stripe!
+    {
+        return (config('filemarket.sales.commission')/100) * $this->price;
     }
 
     public function uploads() {

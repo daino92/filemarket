@@ -4,7 +4,10 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 
-Route::group(['prefix' => '/account', 'middleware' => ['auth'], 'namespace' => 'Account'], function () {
+Route::get('/account/connect', 'Account\MarketplaceConnectController@index')->name('account.connect');
+Route::get('/account/connect/complete', 'Account\MarketplaceConnectController@store')->name('account.complete');
+
+Route::group(['prefix' => '/account', 'middleware' => ['auth', 'needs.marketplace'], 'namespace' => 'Account'], function () {
 	Route::get('/','AccountController@index')->name('account');
 
 	Route::group(['prefix' => '/files'], function() {
@@ -19,6 +22,7 @@ Route::group(['prefix' => '/account', 'middleware' => ['auth'], 'namespace' => '
 
 Route::group(['prefix' => '/{file}/checkout', 'namespace' => 'Checkout'], function () {
 	Route::post('/free', 'CheckoutController@free')->name('checkout.free');
+    Route::post('/payment', 'CheckoutController@payment')->name('checkout.payment');
 });
 
 Route::group(['prefix' => '/admin', 'namespace' => 'Admin', 'middleware' => ['auth', 'admin']], function() {
@@ -44,3 +48,4 @@ Route::post('/{file}/upload', 'upload\UploadController@store')->name('upload.sto
 Route::delete('/{file}/upload/{upload}', 'upload\UploadController@destroy')->name('upload.destroy');
 
 Route::get('/{file}', 'Files\FileController@show')->name('files.show');
+Route::get('/{file}/{sale}/download', 'Files\FileDownloadController@show')->name('files.download');

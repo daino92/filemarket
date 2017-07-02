@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Traits\Roles\HasRoles;
+use Carbon\Carbon;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -17,6 +18,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name', 'email', 'password',
+        'stripe_id', 'stripe_key'
     ];
 
     /**
@@ -27,6 +29,21 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function  saleValueThisMonth()
+    {
+        $now = Carbon::now();
+
+        return $this->sales()->whereBetween('created_at', [
+            $now->startOfMonth(),
+            $now->copy()->endOfMonth()
+        ])->get()->sum('sale_price');
+    }
+
+    public function  saleValueOverLifetime()
+    {
+        return $this->sales->sum('sale_price');
+    }
 
     public function isAdmin() {
         if ($this->hasRole('admin')) {
